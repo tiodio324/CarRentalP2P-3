@@ -1,0 +1,12 @@
+@use '@/styles/globalColors' as *;
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.page { @include flex-column; gap: $spacing-xl; }
+.header { @include flex-between; gap: $spacing-md; }
+.title { @include heading-1; margin: 0; }
+.filters { display: flex; gap: $spacing-md; }
+.loading, .empty { @include flex-center; padding: $spacing-3xl; color: $color-text-muted; }
+.tableCard { overflow: hidden; }
+.form { @include flex-column; gap: $spacing-md; }
+.formActions { display: flex; justify-content: flex-end; gap: $spacing-sm; margin-top: $spacing-md; }
