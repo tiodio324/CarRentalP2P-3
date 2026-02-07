@@ -12,7 +12,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: transparent;
+    background: rgba(0, 0, 0, 0.6);
     z-index: $z-modal-backdrop - 1;
   }
 }
@@ -23,7 +23,7 @@
   left: 0;
   bottom: 0;
   width: $sidebar-width;
-  background: $color-bg-primary;
+  background: linear-gradient(180deg, $color-bg-primary 0%, $color-bg-secondary 100%);
   border-right: 1px solid $color-border-light;
   z-index: $z-sticky;
   display: flex;
@@ -68,7 +68,7 @@
 
 .nav {
   flex: 1;
-  padding: $spacing-md;
+  padding: $spacing-lg $spacing-md;
   overflow-y: auto;
   @include scrollbar-styled;
 }
@@ -79,7 +79,7 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: $spacing-xs;
+  gap: $spacing-sm;
 }
 
 .navItem {
@@ -96,18 +96,19 @@
   font-weight: $font-weight-semibold;
   text-align: left;
   cursor: pointer;
-  transition: all $transition-fast;
+  transition: all $transition-base;
   
   &:hover {
     background: $color-bg-tertiary;
     color: $color-text-primary;
-    transform: translateX(4px);
+    transform: translateX(6px);
   }
   
   &.active {
-    background: $color-primary;
+    background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
     color: $color-text-inverse;
     box-shadow: 0 4px 16px rgba($color-primary, 0.4);
+    transform: translateX(4px);
     
     .icon {
       color: $color-text-inverse;
@@ -139,15 +140,11 @@
   border-top: 1px solid $color-border-light;
   text-align: center;
   transition: opacity $transition-fast;
+  background: $color-bg-secondary;
 }
 
 .copyright {
   font-size: $font-size-xs;
   color: $color-text-muted;
   margin: 0;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }

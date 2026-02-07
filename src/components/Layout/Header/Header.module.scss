@@ -3,20 +3,39 @@
 @use '@/styles/mixins' as *;
 
 .header {
-  @include flex-between;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: $header-height;
-  padding: 0 $spacing-xl;
-  background: $gradient-header;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
   color: $color-text-inverse;
   z-index: $z-fixed;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  @include flex-column;
+  height: 100%;
+}
+
+.topBar {
+  @include flex-between;
+  padding: $spacing-sm $spacing-xl;
+  flex: 1;
   
   @include mobile {
-    padding: 0 $spacing-md;
+    padding: $spacing-sm $spacing-md;
+  }
+}
+
+.bottomBar {
+  padding: $spacing-sm $spacing-xl;
+  background: rgba(0, 0, 0, 0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+  @include mobile {
+    padding: $spacing-sm $spacing-md;
   }
 }
 
@@ -28,15 +47,16 @@
 .menuButton {
   display: none;
   padding: $spacing-sm;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.15);
   border: none;
   color: $color-text-inverse;
   cursor: pointer;
-  border-radius: $radius-md;
-  transition: background $transition-fast;
+  border-radius: $radius-lg;
+  transition: all $transition-fast;
+  backdrop-filter: blur(10px);
   
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.25);
   }
   
   svg {
@@ -61,13 +81,15 @@
   width: 28px;
   height: 28px;
   color: $color-accent;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .logoText {
   font-family: $font-family-primary;
   font-size: $font-size-lg;
-  font-weight: $font-weight-semibold;
+  font-weight: $font-weight-bold;
   letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   
   @include mobile {
     display: none;
@@ -75,16 +97,14 @@
 }
 
 .title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   font-family: $font-family-primary;
-  font-size: $font-size-xl;
-  font-weight: $font-weight-medium;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-semibold;
   margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   
   @include mobile {
-    display: none;
+    font-size: $font-size-base;
   }
 }
 
@@ -100,10 +120,12 @@
 
 .role {
   font-size: $font-size-sm;
-  color: $color-primary-lighter;
-  padding: $spacing-xs $spacing-sm;
-  background: rgba(255, 255, 255, 0.1);
+  color: $color-text-inverse;
+  padding: $spacing-xs $spacing-md;
+  background: rgba(255, 255, 255, 0.2);
   border-radius: $radius-full;
+  backdrop-filter: blur(10px);
+  font-weight: $font-weight-medium;
   
   @include mobile {
     display: none;
@@ -111,10 +133,12 @@
 }
 
 .headerButton {
-  color: $color-accent !important;
-  border-color: $color-accent !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: $color-text-inverse !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px);
   
   &:hover {
-    background: rgba($color-accent, 0.1) !important;
+    background: rgba(255, 255, 255, 0.25) !important;
   }
 }

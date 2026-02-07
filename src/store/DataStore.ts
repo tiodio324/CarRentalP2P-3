@@ -127,7 +127,7 @@ export class DataStore {
     const rental: Rental = {
       id: uuidv4(), carId: data.carId, carName: formatCarName(car), renterId: authStore.currentRole, renterName: data.renterName,
       startDate: data.startDate, endDate: data.endDate, totalDays, totalPrice: totalDays * car.pricePerDay,
-      status: 'pending', notes: data.notes, createdAt: now, updatedAt: now
+      status: 'pending', notes: data.notes || '', createdAt: now, updatedAt: now
     };
     try {
       await FirebaseService.setData(`rentals/${rental.id}`, rental);

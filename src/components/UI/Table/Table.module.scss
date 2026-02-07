@@ -9,7 +9,7 @@
   border-radius: $radius-xl;
   border: none;
   background: $color-bg-primary;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
 }
 
 .table {
@@ -20,13 +20,13 @@
 }
 
 .thead {
-  background: $color-bg-tertiary;
-  border-bottom: 2px solid $color-border-primary;
+  background: linear-gradient(135deg, rgba($color-primary, 0.1) 0%, rgba($color-primary, 0.05) 100%);
+  border-bottom: 2px solid $color-primary;
 }
 
 .th {
-  padding: $spacing-md;
-  font-weight: $font-weight-semibold;
+  padding: $spacing-lg $spacing-md;
+  font-weight: $font-weight-bold;
   color: $color-text-primary;
   text-align: left;
   white-space: nowrap;
@@ -35,6 +35,7 @@
 .tbody {
   .tr {
     border-bottom: 1px solid $color-border-light;
+    transition: all $transition-fast;
     
     &:last-child {
       border-bottom: none;
@@ -43,7 +44,7 @@
 }
 
 .td {
-  padding: $spacing-md;
+  padding: $spacing-lg $spacing-md;
   color: $color-text-secondary;
   vertical-align: middle;
 }
@@ -58,7 +59,8 @@
 // Hoverable
 .hoverable {
   .tbody .tr:hover {
-    background: $color-accent-light;
+    background: rgba($color-primary, 0.05);
+    transform: scale(1.01);
   }
 }
 

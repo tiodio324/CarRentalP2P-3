@@ -6,6 +6,26 @@
   @include button-base;
   position: relative;
   overflow: hidden;
+  font-weight: $font-weight-bold;
+  text-transform: none;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+  
+  &:hover::before {
+    width: 300px;
+    height: 300px;
+  }
   
   &:focus-visible {
     outline: 2px solid $color-primary;
@@ -15,33 +35,29 @@
 
 // Variants
 .primary {
-  background: $color-primary;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
   color: $color-text-inverse;
-  font-weight: $font-weight-semibold;
+  box-shadow: 0 6px 20px rgba($color-primary, 0.4);
   
   &:hover:not(:disabled) {
-    background: $color-primary-dark;
-    box-shadow: 0 6px 20px rgba($color-primary, 0.35);
-    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba($color-primary, 0.5);
+    transform: translateY(-3px);
   }
   
   &:active:not(:disabled) {
-    transform: translateY(0);
-    background: $color-primary-darkest;
+    transform: translateY(-1px);
   }
 }
 
 .secondary {
-  background: transparent;
+  background: $color-bg-secondary;
   color: $color-primary;
   border: 2px solid $color-primary;
-  font-weight: $font-weight-semibold;
   
   &:hover:not(:disabled) {
     background: $color-primary;
     color: $color-text-inverse;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba($color-primary, 0.25);
+    transform: scale(1.05);
   }
 }
 
@@ -77,21 +93,21 @@
 
 // Sizes
 .sm {
-  padding: $spacing-xs $spacing-sm;
+  padding: 10px 20px;
   font-size: $font-size-sm;
-  border-radius: $radius-full;
+  border-radius: $radius-xl;
 }
 
 .md {
-  padding: $spacing-sm $spacing-lg;
+  padding: 12px 26px;
   font-size: $font-size-base;
-  border-radius: $radius-full;
+  border-radius: $radius-xl;
 }
 
 .lg {
-  padding: $spacing-md $spacing-xl;
+  padding: 16px 32px;
   font-size: $font-size-md;
-  border-radius: $radius-full;
+  border-radius: $radius-xl;
 }
 
 // States
@@ -131,6 +147,8 @@
 
 .text {
   @include text-ellipsis;
+  position: relative;
+  z-index: 1;
 }
 
 .spinner {

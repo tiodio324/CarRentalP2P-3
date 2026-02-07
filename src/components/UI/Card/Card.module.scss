@@ -2,86 +2,57 @@
 @use '@/styles/variables' as *;
 @use '@/styles/mixins' as *;
 
+// Car-Rental: Карточки с градиентным фоном header
 .card {
-  @include card;
   display: flex;
   flex-direction: column;
+  background: $color-bg-primary;
   border-radius: $radius-xl;
   overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: all $transition-smooth;
 }
 
-// Variants
-.default {
-  background: $color-bg-primary;
-}
-
-.outlined {
-  background: transparent;
+.default { background: $color-bg-primary; }
+.outlined { 
+  background: transparent; 
   box-shadow: none;
   border: 2px solid $color-border-primary;
 }
-
-.elevated {
-  background: $color-bg-primary;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+.elevated { 
+  background: $color-bg-primary; 
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
-// Padding
-.padding-none {
-  .content {
-    padding: 0;
-  }
-}
+.padding-none .content { padding: 0; }
+.padding-sm .content { padding: $spacing-sm; }
+.padding-md .content { padding: $spacing-md; }
+.padding-lg .content { padding: $spacing-lg; }
 
-.padding-sm {
-  .content {
-    padding: $spacing-sm;
-  }
-}
-
-.padding-md {
-  .content {
-    padding: $spacing-md;
-  }
-}
-
-.padding-lg {
-  .content {
-    padding: $spacing-lg;
-  }
-}
-
-// Hoverable
 .hoverable {
   cursor: pointer;
   
   &:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.15);
   }
 }
 
-// Sections
 .header {
-  padding: $spacing-md;
+  padding: $spacing-lg;
+  background: linear-gradient(135deg, rgba($color-primary, 0.1) 0%, rgba($color-primary, 0.02) 100%);
   border-bottom: 1px solid $color-border-light;
   
-  &:empty {
-    display: none;
-  }
+  &:empty { display: none; }
 }
 
-.content {
-  flex: 1;
-}
+.content { flex: 1; }
 
 .footer {
-  padding: $spacing-md;
-  border-top: 1px solid $color-border-light;
+  padding: $spacing-md $spacing-lg;
   background: $color-bg-secondary;
-  border-radius: 0 0 $radius-lg $radius-lg;
+  border-top: 1px solid $color-border-light;
+  border-radius: 0 0 $radius-xl $radius-xl;
   
-  &:empty {
-    display: none;
-  }
+  &:empty { display: none; }
 }
