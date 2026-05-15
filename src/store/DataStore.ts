@@ -71,7 +71,12 @@ export class DataStore {
     this.locationsLoading = true;
     try {
       const data = await FirebaseService.getData<Record<string, Location>>('locations');
-      runInAction(() => { this.locations = data ? Object.values(data) : []; this.locationsLoading = false; });
+      runInAction(() => {
+        this.locations = data
+          ? Object.entries(data).map(([key, loc]) => ({ ...loc, id: key }))
+          : [];
+        this.locationsLoading = false;
+      });
     } catch (error) {
       runInAction(() => { this.error = 'Ошибка загрузки локаций'; this.locationsLoading = false; });
     }
@@ -164,7 +169,10 @@ export class DataStore {
     if (!authStore.canManageLocations()) return false;
     const index = this.locations.findIndex(l => l.id === id);
     if (index === -1) return false;
-    const updated = { ...this.locations[index], ...data, updatedAt: new Date().toISOString() };
+    const definedPatch = Object.fromEntries(
+      Object.entries(data).filter(([, v]) => v !== undefined)
+    ) as Partial<LocationFormData>;
+    const updated = { ...this.locations[index], ...definedPatch, id, updatedAt: new Date().toISOString() };
     try {
       await FirebaseService.setData(`locations/${id}`, updated);
       runInAction(() => { this.locations[index] = updated; });

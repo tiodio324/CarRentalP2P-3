@@ -5,7 +5,6 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/CarRentalP2P-3/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
